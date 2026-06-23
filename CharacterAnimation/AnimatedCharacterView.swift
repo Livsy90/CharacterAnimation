@@ -72,6 +72,7 @@ struct AnimatedCharacterView: View {
                         .resizable()
                         .interpolation(.none)
                         .scaledToFit()
+                        .background(.primary.opacity(0.1))
                         .padding(.vertical, 22)
                         .padding(.horizontal, 6)
                         .background(.black)
@@ -85,8 +86,8 @@ struct AnimatedCharacterView: View {
                         )
                         .cigaretteSmoke(
                             isActive: isSmokeVisible,
-                            anchor: UnitPoint(x: 0.18, y: 0.25),
-                            relativeSize: CGSize(width: 0.24, height: 0.25)
+                            anchor: UnitPoint(x: 0.18, y: 0.35),
+                            relativeSize: CGSize(width: 0.24, height: 0.45)
                         )
                         .exhaledSmoke(isActive: isExhaleSmokeVisible)
                 }
@@ -157,7 +158,17 @@ extension AnimatedCharacterView {
         .firstActionTitle("smoke")
         .secondActionTitle("wink")
         .padding(26)
-        .background(Color.secondary.opacity(0.4), in: .rect(cornerRadius: 30))
+        .background {
+            LinearGradient(
+                colors: [
+                    .primary.opacity(0.3),
+                    .secondary.opacity(0.3)
+                ],
+                startPoint: .top,
+                endPoint: .bottom
+            )
+            .clipShape(.rect(cornerRadius: 16))
+        }
         .padding()
     }
 }
@@ -230,7 +241,7 @@ private extension AnimatedCharacterView {
 
 private extension Array where Element == Image {
     static let defaultIdleFrames = (1...5).map { Image("idle-\($0)") }
-    static let defaultFirstActionFrames = (1...13).map { Image("smoke-\($0)") }
+    static let defaultFirstActionFrames = (1...11).map { Image("smoke-\($0)") }
     static let defaultSecondActionFrames = (1...6).map { Image("wink-\($0)") }
 }
 
