@@ -76,6 +76,8 @@ struct AnimatedCharacterView: View {
                         .padding(.vertical, 22)
                         .padding(.horizontal, 6)
                         .background(.black)
+                        .padding(8)
+                        .background(.black.opacity(0.5))
                         .frame(width: side, height: side)
                         .layerEffect(
                             ShaderLibrary.vhsDisplayShader(
@@ -87,7 +89,7 @@ struct AnimatedCharacterView: View {
                         .cigaretteSmoke(
                             isActive: isSmokeVisible,
                             anchor: UnitPoint(x: 0.18, y: 0.35),
-                            relativeSize: CGSize(width: 0.24, height: 0.45)
+                            relativeSize: CGSize(width: 0.24, height: 0.40)
                         )
                         .exhaledSmoke(isActive: isExhaleSmokeVisible)
                 }
